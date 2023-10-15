@@ -21,7 +21,9 @@ locals {
   instance_profile            = "Graylog-Instance-Profile"
   asg_security_group_name     = "Graylog-asg-security-group"
   launch_template_name        = "Graylog-launch-template"
-
+  alb_name                    = "Graylog-external-alb"
+  alb_tg                      = "Graylog-Target-Group"
+  alb_sg_name                 = "Graylog-alb-security-group"
 }
 # VPC Variables
 
