@@ -16,6 +16,12 @@ locals {
   nat_gateway-1_name          = "Graylog-nat-gateway-1"
   nat_gateway-2_name          = "Graylog-nat-gateway-2"
   nat_gateway-3_name          = "Graylog-nat-gateway-3"
+  asg_name                    = "Graylog-AutoScaling-Group"
+  instance_role               = "Graylog-Role"
+  instance_profile            = "Graylog-Instance-Profile"
+  asg_security_group_name     = "Graylog-asg-security-group"
+  launch_template_name        = "Graylog-launch-template"
+
 }
 # VPC Variables
 
@@ -41,4 +47,36 @@ variable "private_subnet_cidr" {
   description = "Private Subnet cidr values"
   type        = list(string)
   default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+}
+
+# Launch Template and ASG Variables
+
+variable "ami" {
+  description = "ami id"
+  type        = string
+  default     = "ami-065ab11fbd3d0323d"
+}
+
+variable "instance_type" {
+  description = "The type of EC2 Instances to run"
+  type        = string
+  default     = "t3.micro"
+}
+
+variable "min_size" {
+  description = "The minimum number of EC2 Instances in the ASG"
+  type        = number
+  default     = 3
+}
+
+variable "max_size" {
+  description = "The maximum number of EC2 Instances in the ASG"
+  type        = number
+  default     = 9
+}
+
+variable "desired_capacity" {
+  description = "The desired number of EC2 Instances in the ASG"
+  type        = number
+  default     = 3
 }
